@@ -125,7 +125,7 @@ void A_output(struct msg message)
     sendpkt.payload[i] = message.data[i];
   }
 
-  /* checksum*/
+  /* checksum  */
   sendpkt.checksum = ComputeChecksum(sendpkt);
 
   window[nextseqnum] = sendpkt;
