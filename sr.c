@@ -4,24 +4,6 @@
 #include "emulator.h"
 #include "sr.h"
 
-/* ******************************************************************
-   Go Back N protocol.  Adapted from J.F.Kurose
-   ALTERNATING BIT AND GO-BACK-N NETWORK EMULATOR: VERSION 1.2
-
-   Network properties:
-   - one way network delay averages five time units (longer if there
-   are other messages in the channel for GBN), but can be larger
-   - packets can be corrupted (either the header or the data portion)
-   or lost, according to user-defined probabilities
-   - packets will be delivered in the order in which they were sent
-   (although some can be lost).
-
-   Modifications:
-   - removed bidirectional GBN code and other code not used by prac.
-   - fixed C style to adhere to current programming style
-   - added GBN implementation
-**********************************************************************/
-
 #define RTT  16.0       /* round trip time.  MUST BE SET TO 16.0 when submitting assignment */
 #define WINDOWSIZE 6    /* the maximum number of buffered unacked packet
                           MUST BE SET TO 6 when submitting assignment */
@@ -257,13 +239,12 @@ void A_timerinterrupt(void)
 void A_init(void)
 {
 
-  /* initialise A's window, buffer and sequence number */
+  /* initialise A's window */
   nextseqnum = 0;   /*A starts with seq num 0, do not change this */
   windowfirst = 0;
   windowlast = -1;    /*windowlast is where the last packet sent is stored.
 		     new packets are placed in winlast + 1
 		     so initially this is set to -1*/
-		   
   windowcount = 0; 
 }
 
